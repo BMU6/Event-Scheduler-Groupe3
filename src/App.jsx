@@ -15,6 +15,16 @@ function Layout() {
   )
 }
 
+// TODO(Bernd): replace with real src/pages/SignIn.jsx once it exists.
+function SignInPlaceholder() {
+  return <div className="container mx-auto p-4">Sign in page — Bernd's branch, comming soon.</div>
+}
+
+// TODO(Bernd): replace with real src/pages/SignUp.jsx once it exists.
+function SignUpPlaceholder() {
+  return <div className="container mx-auto p-4">Sign up page — Bernd's branch, comming soon.</div>
+} 
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -23,6 +33,8 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="events/:id" element={<EventDetails />} />
           <Route path="events/new" element={<CreateEvent />} />
+          <Route path="signin" element={<SignInPlaceholder />} />
+          <Route path="signup" element={<SignUpPlaceholder />} />
         </Route>
       </Routes>
     </BrowserRouter>

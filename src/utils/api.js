@@ -92,6 +92,14 @@ export function deleteEvent(id) {
 
 // ---------- Auth (temporary stand-in until Bernd's AuthContext / SignIn page exist) ----------
 
+// POST /api/users -> creates a user. Note: no auto-login, redirect to /signin per PLANNING.md.
+export function signUp({ name, email, password }) {
+  return request('/users', {
+    method: 'POST',
+    body: JSON.stringify({ name, email, password })
+  })
+}
+
 // POST /api/auth/login -> { token, user: { id, email } }
 export function login({ email, password }) {
   return request('/auth/login', {
