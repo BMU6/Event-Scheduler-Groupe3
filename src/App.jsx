@@ -40,3 +40,19 @@ export default function App() {
     </BrowserRouter>
   )
 }
+
+
+
+
+// import { login } from '../utils/api'
+
+// async function handleSubmit(e) {
+//   e.preventDefault()
+//   try {
+//     const { token } = await login({ email, password })
+//     localStorage.setItem('token', token)   // ← exact key name, this is the contract
+//     navigate('/')
+//   } catch (err) {
+//     setError(err.message)
+//   }
+// }

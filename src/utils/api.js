@@ -5,7 +5,8 @@
 export const API_BASE_URL = 'http://localhost:3001/api'
 
 function getToken() {
-  return localStorage.getItem('token')
+  return localStorage.getItem('e-api-token')
+  console.log('getToken called, token:', localStorage.getItem('e-api-token'))
 }
 
 // Decodes the JWT payload without any extra dependency.
