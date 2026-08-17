@@ -1,20 +1,36 @@
-import { useState } from "react";
+import { useState, use } from "react";
 import { Link } from "react-router";
+import { isLoggedIn } from "./utils/api.js";
+import { useAuth } from "./context/AuthContext.jsx";
+// import { useAuth } from "./context/AuthContext.jsx";
+// import { AuthContext} from "./context/AuthContext.jsx";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  // const [refreshed, setRefreshed] = useState(false);
+  
+  // useEffect(() => {
+  //   // isLoggedIn(setRefreshed);
+  // }, [refreshed]);
 
+  // const { isLoggedIn } = use(AuthContext);
+  // const { isLoggedIn } = use(useAuth);
+  
   return (
     <nav className="flex items-center justify-between bg-base-100 shadow-sm px-4 md:px-8 py-4">
       <Link to="/" className="flex items-center gap-2 text-xl font-bold">
         <span className="text-2xl">🎟️</span>
         <span>Events App</span>
       </Link>
-
       <div className="hidden md:flex items-center gap-6">
         <Link to="/" className="text-base font-normal hover:text-blue-700">
           Home
         </Link>
+        {useAuth().isLoggedIn && (
+          <Link to="/events/new" className="text-base font-normal hover:text-blue-700">
+            Create Event
+          </Link>
+        )}
         <Link to="/signin" className="text-base font-normal hover:text-blue-700 px-3 py-2">
           Sign In
         </Link>

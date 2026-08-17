@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { SignIn } from "./network/Fetches";
+import { useAuth } from "./context/AuthContext.jsx";
 
 export default function SignInForm() {
   const [form, setForm] = useState({
@@ -35,7 +36,7 @@ export default function SignInForm() {
     setErrors(next);
     return Object.keys(next).length === 0;
   };
-
+  // const { setLoggedin } = use(AuthContext);
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
@@ -47,7 +48,7 @@ export default function SignInForm() {
       console.log("Signed in result.token: ", result.token);
 
       localStorage.setItem('e-api-token', result.token);
-
+      useAuth().setLoggedin(true); // Update the authentication state in the context
       navigate("/");
     } catch (err) {
       console.error(err);
