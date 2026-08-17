@@ -3,17 +3,23 @@ import Home from './pages/Home'
 import EventDetails from './pages/EventDetails'
 import CreateEvent from './pages/CreateEvent'
 
+// import { BrowserRouter, Routes, Route } from "react-router";
+import Layout from "./Layout";
+// import Home from "./Home";  commented/dummy 2b deleted once Bernd's branch is merged
+import SignInForm from "./SignInForm";
+import SignUpForm from "./SignUpForm";
+
 // Layout is intentionally thin: Bernd's feature-navBar branch adds <Navbar />
 // here (above <Outlet />) plus MainLayout/ProtectedLayout per PLANNING.md.
 // Coordinate merge order in stand-up — whoever merges second resolves this
 // one-line conflict.
-function Layout() {
-  return (
-    <>
-      <Outlet />
-    </>
-  )
-}
+// function Layout() {
+//   return (
+//     <>
+//       <Outlet />
+//     </>
+//   )
+// }
 
 // TODO(Bernd): replace with real src/pages/SignIn.jsx once it exists.
 function SignInPlaceholder() {
@@ -33,8 +39,8 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="events/:id" element={<EventDetails />} />
           <Route path="events/new" element={<CreateEvent />} />
-          <Route path="signin" element={<SignInPlaceholder />} />
-          <Route path="signup" element={<SignUpPlaceholder />} />
+          <Route path="signin" element={<SignInForm />} />
+          <Route path="signup" element={<SignUpForm />} />
         </Route>
       </Routes>
     </BrowserRouter>
@@ -56,3 +62,14 @@ export default function App() {
 //     setError(err.message)
 //   }
 // }
+//           <Route path="/" element={<Home />} />
+//           <Route path="/signin" element={<SignInForm />} />
+//           <Route path="/signup" element={<SignUpForm />} />
+//         </Route>
+//       </Routes>
+//     </BrowserRouter>
+//   );
+// }
+
+// bernd1@example.com
+// password123
