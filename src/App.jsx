@@ -8,6 +8,8 @@ import Layout from "./Layout";
 // import Home from "./Home";  commented/dummy 2b deleted once Bernd's branch is merged
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
+import { AuthProvider } from './context/AuthContext';
+
 
 // Layout is intentionally thin: Bernd's feature-navBar branch adds <Navbar />
 // here (above <Outlet />) plus MainLayout/ProtectedLayout per PLANNING.md.
@@ -21,29 +23,31 @@ import SignUpForm from "./SignUpForm";
 //   )
 // }
 
-// TODO(Bernd): replace with real src/pages/SignIn.jsx once it exists.
-function SignInPlaceholder() {
-  return <div className="container mx-auto p-4">Sign in page — Bernd's branch, comming soon.</div>
-}
+// // TODO(Bernd): replace with real src/pages/SignIn.jsx once it exists.
+// function SignInPlaceholder() {
+//   return <div className="container mx-auto p-4">Sign in page — Bernd's branch, comming soon.</div>
+// }
 
-// TODO(Bernd): replace with real src/pages/SignUp.jsx once it exists.
-function SignUpPlaceholder() {
-  return <div className="container mx-auto p-4">Sign up page — Bernd's branch, comming soon.</div>
-} 
+// // TODO(Bernd): replace with real src/pages/SignUp.jsx once it exists.
+// function SignUpPlaceholder() {
+//   return <div className="container mx-auto p-4">Sign up page — Bernd's branch, comming soon.</div>
+// } 
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="events/:id" element={<EventDetails />} />
-          <Route path="events/new" element={<CreateEvent />} />
-          <Route path="signin" element={<SignInForm />} />
-          <Route path="signup" element={<SignUpForm />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="events/:id" element={<EventDetails />} />
+            <Route path="events/new" element={<CreateEvent />} />
+            <Route path="signin" element={<SignInForm />} />
+            <Route path="signup" element={<SignUpForm />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   )
 }
 
