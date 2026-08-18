@@ -12,34 +12,22 @@ function getToken() {
 // Decodes the JWT payload without any extra dependency.
 // Token shape (per events-api): { id, email, iat, exp }
 export function decodeToken(token = getToken()) {
-  // const decoded = decodeToken()
-  console.log("isLoggedIn called, token:", token);
-  if (!token) return null;
-  return token;
-  // if (!token) return null
-  // try {
-  //   const payload = token.split('.')[1]
-  //   return JSON.parse(atob(payload))
-  // } catch {
-  //   return null
-  // }
+  if (!token) return null
+  try {
+    const payload = token.split('.')[1]
+    return JSON.parse(atob(payload))
+  } catch {
+    return null
+  }
 }
 
-export function isLoggedIn(setRefreshed) {
-  const decoded = decodeToken();
-  console.log("isLoggedIn called, decoded token:", decoded);
-  if (!decoded) {
-    console.log("isLoggedIn: no decoded token, returning false");
-    setRefreshed(prev => false);
-    return false;
-  } else {
-    console.log("isLoggedIn: decoded token exists, returning true");
-    setRefreshed(prev => true);
-    return true;
-  }
+export function isLoggedIn() {
+  const decoded = decodeToken()
+  if (!decoded) return false
   // exp is in seconds, Date.now() in ms
-  // return decoded.exp * 1000 > Date.now()
+  return decoded.exp * 1000 > Date.now()
 }
+
 
 async function request(path, options = {}) {
   const token = getToken();
