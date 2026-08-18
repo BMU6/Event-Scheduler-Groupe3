@@ -9,7 +9,9 @@ export function AuthProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   const loggedIn = () => setIsLoggedIn(true)
-  const loggedOf = () => setIsLoggedIn(false)
+  const loggedOf = () => {setIsLoggedIn(false);    
+    localStorage.removeItem('e-api-token');// added clear Localstorage when Logout is clicked
+}
 
   return (
     <AuthContext.Provider value={{ isLoggedIn, loggedIn, loggedOf }}>
